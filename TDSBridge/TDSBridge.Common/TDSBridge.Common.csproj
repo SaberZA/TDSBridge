@@ -56,9 +56,11 @@
     <Compile Include="BridgeAcceptor.cs" />
     <Compile Include="BridgedConnection.cs" />
     <Compile Include="Header\AllHeader.cs" />
+    <Compile Include="Header\TcpHeader.cs" />
     <Compile Include="Header\TDSHeader.cs" />
     <Compile Include="Header\HeaderType.cs" />
     <Compile Include="Header\StatusBitMask.cs" />
+    <Compile Include="Header\UdpHeader.cs" />
     <Compile Include="Message\AttentionMessage.cs" />
     <Compile Include="Message\RPCRequestMessage.cs" />
     <Compile Include="Message\SQLBatchMessage.cs" />

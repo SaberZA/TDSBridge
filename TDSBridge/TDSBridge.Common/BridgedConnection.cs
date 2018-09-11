@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Net.Sockets;
 using TDSBridge.Common.Header;
+using TDSBridge.Common.Header.NetworkSniffer;
 using TDSBridge.Common.Packet;
 
 namespace TDSBridge.Common
@@ -113,9 +114,24 @@ namespace TDSBridge.Common
                 while ((iReceived = SocketCouple.BridgeSQLSocket.Receive(bBuffer, SocketFlags.None)) > 0)
                 {
                     Header.TDSHeader header = new Header.TDSHeader(bBuffer);
-
-                    //Console.WriteLine("[OUT][" + header.Type.ToString() + "]{" + iReceived + "}");
-
+                    var tcpHeader = new TcpHeader(bBuffer, iReceived);
+                    
+                    Console.WriteLine("[OUT][" + header.Type.ToString() + "]{" + iReceived + "}");
+                    Console.WriteLine("[RAW TCP HEADER]");
+                    Console.WriteLine($"{tcpHeader.SourcePort}");
+                    Console.WriteLine($"{tcpHeader.DestinationPort}");
+                    Console.WriteLine($"{tcpHeader.SequenceNumber}");
+                    Console.WriteLine($"{tcpHeader.AcknowledgementNumber}");
+                    Console.WriteLine($"{tcpHeader.HeaderLength}");
+                    Console.WriteLine($"{tcpHeader.WindowSize}");
+                    Console.WriteLine($"{tcpHeader.UrgentPointer}");
+                    Console.WriteLine($"{tcpHeader.Flags}");
+                    Console.WriteLine($"{tcpHeader.Checksum}");
+                    Console.WriteLine($"{tcpHeader.Data}");
+                    Console.WriteLine($"{tcpHeader.GetBatchText(iReceived)}");
+                    Console.WriteLine($"{tcpHeader.MessageLength}");
+                    Console.WriteLine("[END OF RAW TCP HEADER]");
+            
                     SocketCouple.ClientBridgeSocket.Send(bBuffer, iReceived, SocketFlags.None);
                 }
             }

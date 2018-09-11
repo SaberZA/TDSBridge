@@ -20,7 +20,7 @@ namespace TDSBridge.Common.Message
 
             int iHeaderLength = (int)_allHeader.Length;
 
-            return System.Text.Encoding.Unicode.GetString(
+            return System.Text.Encoding.ASCII.GetString(
                 bPayload,
                 iHeaderLength,
                 bPayload.Length - iHeaderLength);

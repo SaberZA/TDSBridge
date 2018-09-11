@@ -73,14 +73,14 @@ namespace TDSBridge
                     byte[] bPayload = rpc.AssemblePayload();
 
                     #if DEBUG
-                    //using (System.IO.FileStream fs = new System.IO.FileStream(
-                    //    "C:\\temp\\dev\\" + (iRPC++) + ".raw",
-                    //    System.IO.FileMode.Create,
-                    //    System.IO.FileAccess.Write,
-                    //    System.IO.FileShare.Read))
-                    //{
-                    //    fs.Write(bPayload, 0, bPayload.Length);
-                    //}
+                    using (System.IO.FileStream fs = new System.IO.FileStream(
+                        "C:\\temp\\dev\\" + (iRPC++) + ".raw",
+                        System.IO.FileMode.Create,
+                        System.IO.FileAccess.Write,
+                        System.IO.FileShare.Read))
+                    {
+                        fs.Write(bPayload, 0, bPayload.Length);
+                    }
                     #endif
 
                 }
