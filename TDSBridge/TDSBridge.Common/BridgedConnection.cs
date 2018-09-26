@@ -41,10 +41,12 @@ namespace TDSBridge.Common
                 byte[] bBuffer = null;
                 byte[] bHeader = new byte[Header.TDSHeader.HEADER_SIZE];
                 int iReceived = 0;
+                var newBuffer = new byte[SocketCouple.ClientBridgeSocket.ReceiveBufferSize];
 
                 Message.TDSMessage tdsMessage = null;
 
                 while ((iReceived = SocketCouple.ClientBridgeSocket.Receive(bHeader, Header.TDSHeader.HEADER_SIZE, SocketFlags.None)) > 0)
+//                while ((iReceived = SocketCouple.ClientBridgeSocket.Receive(bHeader, Header.TDSHeader.HEADER_SIZE, SocketFlags.None)) > 0)
                 //while ((iReceived = sc.InputSocket.Receive(bBuffer, SocketFlags.None)) > 0)
                 {
                     Header.TDSHeader header = new Header.TDSHeader(bHeader);
@@ -66,7 +68,13 @@ namespace TDSBridge.Common
                         //Console.WriteLine("\t{0:N0} bytes package", header.LengthIncludingHeader);
                         SocketCouple.ClientBridgeSocket.Receive(bBuffer, 0, header.PayloadSize, SocketFlags.None);
                     }
-                    TDSPacket tdsPacket = new TDSPacket(bHeader, bBuffer, header.PayloadSize);
+                    var tdsPacket = new TDSPacket(bHeader, bBuffer, header.PayloadSize);
+                    if (tdsPacket.Header.Type == HeaderType.SQLBatch)
+                    {
+                        var sqlBatchPayload = tdsPacket.Payload;
+                        var sqlQuery = tdsPacket.Data_SqlText;
+                    }
+                    
                     OnTDSPacketReceived(tdsPacket);
 
                     if (tdsMessage == null)

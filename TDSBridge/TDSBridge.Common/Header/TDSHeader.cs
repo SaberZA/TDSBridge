@@ -24,41 +24,7 @@ namespace TDSBridge.Common.Header
         public HeaderType Type { get { return (HeaderType)_Buffer[0]; } }
         public byte StatusBitMask { get { return _Buffer[1]; } }
 
-//        public UInt32 Data_TotalLength
-//        {
-//            get
-//            {
-//                var totalLengthBytes = PayloadBuffer.SubArray(0, 4);
-//                return BitConverter.ToUInt32(totalLengthBytes,0);
-//            }
-//        }
-//        
-//        public UInt32 Data_HeaderLength
-//        {
-//            get
-//            {
-//                var headerLengthBytes = PayloadBuffer.SubArray(4, 4);
-//                return BitConverter.ToUInt32(headerLengthBytes,0);
-//            }
-//        }
-//        
-//        public UInt16 Data_HeaderType
-//        {
-//            get
-//            {
-//                var headerTypeBytes = PayloadBuffer.SubArray(8, 2);
-//                return BitConverter.ToUInt16(headerTypeBytes,0);
-//            }
-//        }
-//        
-//        public UInt64 Data_TransactionDescriptor
-//        {
-//            get
-//            {
-//                var transactionDescriptorBytes = PayloadBuffer.SubArray(10, 8);
-//                return BitConverter.ToUInt64(transactionDescriptorBytes,0);
-//            }
-//        }
+        
 
         public int LengthIncludingHeader { 
             get
