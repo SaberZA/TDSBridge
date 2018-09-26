@@ -128,7 +128,8 @@ namespace TDSBridge.Common
                     Console.WriteLine($"{tcpHeader.Flags}");
                     Console.WriteLine($"{tcpHeader.Checksum}");
                     Console.WriteLine($"{tcpHeader.Data}");
-                    Console.WriteLine($"{tcpHeader.GetBatchText(iReceived)}");
+                    var batchText = tcpHeader.GetBatchText(iReceived);
+                    Console.WriteLine($"{batchText}");
                     Console.WriteLine($"{tcpHeader.MessageLength}");
                     Console.WriteLine("[END OF RAW TCP HEADER]");
             

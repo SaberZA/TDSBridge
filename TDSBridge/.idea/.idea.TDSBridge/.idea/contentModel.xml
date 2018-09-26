@@ -40,6 +40,9 @@
         </e>
         <e p="SocketCouple.cs" t="Include" />
         <e p="TDSBridge.Common.csproj" t="IncludeRecursive" />
+        <e p="Utils" t="Include">
+          <e p="Extensions.cs" t="Include" />
+        </e>
       </e>
       <e p="TDSBridge.sln" t="IncludeFlat" />
     </e>
